@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class OthellowithAI extends JFrame
 {
-    OtloGameBoard gameBoard=new OtloGameBoard(true);
+    OtloGameBoard gameBoard=new OtloGameBoard();
     JButton btngobacktomenu = new JButton("Back To Menu");
     JButton btnrestart = new JButton("Restart");
     JLabel bg = new JLabel();
@@ -30,7 +30,7 @@ public class OthellowithAI extends JFrame
         ImageIcon bgc=new ImageIcon(bgscale);
         bg.setIcon(bgc);
         add(bg);
-
+        gameBoard.iswithai=true;
 
         bg.add(btngobacktomenu);
         bg.add(btnrestart);

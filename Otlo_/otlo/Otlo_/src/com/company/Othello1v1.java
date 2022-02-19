@@ -5,16 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class OthellowithAI extends JFrame
+public class Othello1v1 extends JFrame
 {
-    OtloGameBoard gameBoard=new OtloGameBoard(true);
+    OtloGameBoard gameBoard=new OtloGameBoard();
     JButton btngobacktomenu = new JButton("Back To Menu");
     JButton btnrestart = new JButton("Restart");
     JLabel bg = new JLabel();
 
-    public OthellowithAI()
+    public Othello1v1()
     {
-        setTitle("Othello 1V1 Vs PC Mode");
+        setTitle("Othello 1V1 Mode");
         setVisible(true);
         setResizable(false);
         gameBoard.setBounds(40,20,575,575);
@@ -31,12 +31,11 @@ public class OthellowithAI extends JFrame
         bg.setIcon(bgc);
         add(bg);
 
-
         bg.add(btngobacktomenu);
         bg.add(btnrestart);
         bg.add(gameBoard);
+        gameBoard.iswithai=false;
         repaint();
-
 
 
         btnrestart.addActionListener(new ActionListener() {

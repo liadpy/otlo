@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Othello1v1 extends JFrame
 {
-    OtloGameBoard gameBoard=new OtloGameBoard();
+    OtloGameBoard gameBoard=new OtloGameBoard(false);
     JButton btngobacktomenu = new JButton("Back To Menu");
     JButton btnrestart = new JButton("Restart");
     JLabel bg = new JLabel();
@@ -34,7 +34,6 @@ public class Othello1v1 extends JFrame
         bg.add(btngobacktomenu);
         bg.add(btnrestart);
         bg.add(gameBoard);
-        gameBoard.iswithai=false;
         repaint();
 
 

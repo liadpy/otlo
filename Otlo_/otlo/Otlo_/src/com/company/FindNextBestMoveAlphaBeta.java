@@ -5,9 +5,9 @@ import javax.swing.*;
 // Java program to find the next optimal move for a player
 
 public class FindNextBestMoveAlphaBeta {
-   static OtloGameBoard global_Board=new OtloGameBoard(false);
-   static OtloGameBoard gboard =new OtloGameBoard(false);
-   static OtloGameBoard oboard = new OtloGameBoard(false);
+   static OtloGameBoard global_Board=new OtloGameBoard();
+   static OtloGameBoard gboard =new OtloGameBoard();
+   static OtloGameBoard oboard = new OtloGameBoard();
 
     // This function returns true if there are moves
     // remaining on the board. It returns false if
@@ -28,37 +28,16 @@ public class FindNextBestMoveAlphaBeta {
             return 0;
 
         int val = 0;
-        if(gb.btns[3][3].getIcon()==gb.WHITEDISK) val+=3;//mids
-        if(gb.btns[4][3].getIcon()==gb.WHITEDISK) val+=3;
-        if(gb.btns[3][4].getIcon()==gb.WHITEDISK) val+=3;
-        if(gb.btns[4][4].getIcon()==gb.WHITEDISK) val+=3;
+        if(gb.btns[3][3].getIcon()==gb.WHITEDISK) val+=5;//mids
+        if(gb.btns[4][3].getIcon()==gb.WHITEDISK) val+=5;
+        if(gb.btns[3][4].getIcon()==gb.WHITEDISK) val+=5;
+        if(gb.btns[4][4].getIcon()==gb.WHITEDISK) val+=5;
 
-        if(gb.btns[3][3].getIcon()==gb.BLACKDISK) val-=2;//bad mids
-        if(gb.btns[4][3].getIcon()==gb.BLACKDISK) val-=2;
-        if(gb.btns[3][4].getIcon()==gb.BLACKDISK) val-=2;
-        if(gb.btns[4][4].getIcon()==gb.BLACKDISK) val-=2;
-
-        if(gb.btns[0][0].getIcon()==gb.WHITEDISK) val+=4;//corners
-        if(gb.btns[0][7].getIcon()==gb.WHITEDISK) val+=4;
-        if(gb.btns[7][0].getIcon()==gb.WHITEDISK) val+=4;
-        if(gb.btns[7][7].getIcon()==gb.WHITEDISK) val+=4;
-
-        if(gb.btns[0][0].getIcon()==gb.BLACKDISK) val-=7;//bad corners
-        if(gb.btns[0][7].getIcon()==gb.BLACKDISK) val-=7;
-        if(gb.btns[7][0].getIcon()==gb.BLACKDISK) val-=7;
-        if(gb.btns[7][7].getIcon()==gb.BLACKDISK) val-=7;
-
-
-        for(int i=0;i<8;i++) {          //kirot
-            if (gb.btns[i][0].getIcon() == OtloGameBoard.BLACKDISK) val -= 5;
-            if (gb.btns[i][7].getIcon() == OtloGameBoard.BLACKDISK) val -= 5;
-            if (gb.btns[7][i].getIcon() == OtloGameBoard.BLACKDISK) val -= 5;
-            if (gb.btns[0][i].getIcon() == OtloGameBoard.BLACKDISK) val -= 5;
-
-
-        }
-
-      //checking buffers not including midbuffers
+        if(gb.btns[0][0].getIcon()==gb.WHITEDISK) val+=2;//corners
+        if(gb.btns[0][7].getIcon()==gb.WHITEDISK) val+=2;
+        if(gb.btns[7][0].getIcon()==gb.WHITEDISK) val+=2;
+        if(gb.btns[7][7].getIcon()==gb.WHITEDISK) val+=2;
+        //checking buffers not including midbuffers
         if((gb.btns[0][0].getIcon()==gb.WHITEDISK)&&(gb.btns[0][1].getIcon()==gb.WHITEDISK&&gb.btns[1][0].getIcon()==gb.WHITEDISK)) val+=3;
         else
         if((gb.btns[0][0].getIcon()==gb.WHITEDISK)&&(gb.btns[0][1].getIcon()==gb.WHITEDISK||gb.btns[1][0].getIcon()==gb.WHITEDISK)) val+=2;
@@ -82,10 +61,9 @@ public class FindNextBestMoveAlphaBeta {
                 if (gb.btns[i][j].getIcon() == gb.WHITEDISK) cw++;
                 if (gb.btns[i][j].getIcon() == gb.BLACKDISK) cb++;
             }
-        val = val + 2*(cw - cb);//adding hefresh in order to get more points and win
+        val = val + (cw - cb);//adding hefresh in order to get more points and win
 
         return val;
-
 
     }
 
@@ -186,7 +164,7 @@ public class FindNextBestMoveAlphaBeta {
                 int alpha = Integer.MIN_VALUE;
                 int beta = Integer.MAX_VALUE;
                 // Check if cell is empty
-                if (board.btns[i][j].getIcon() == null&&OtloGameBoard.ismoveleagal(i,j,board,board.c)) {
+                if (board.btns[i][j].getIcon() == null) {
                     // Make the move
                     for(int ii = 0;ii<8;ii++)
                         for (int jj = 0;jj<8;jj++)
